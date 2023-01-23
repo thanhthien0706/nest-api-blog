@@ -1,0 +1,21 @@
+version: '3'
+
+volumes:
+  mysql-db-blog:
+
+# networks:
+#   nest-blog:
+
+services:
+  db:
+    image: mysql:8.0.31
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: db-nest-blog
+    ports:
+      - '3308:3306'
+    volumes:
+      - mysql-db-blog:/var/lib/mysql
+    # networks:
+    #   - nest-blog
