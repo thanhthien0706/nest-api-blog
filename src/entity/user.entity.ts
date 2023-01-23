@@ -23,7 +23,7 @@ export class UserEntity extends BaseEntity {
   password: string;
 
   @Column()
-  isActive: boolean;
+  isActive: boolean = true as boolean;
 
   @ManyToMany(() => RoleEntity, (role) => role.users)
   @JoinTable({
