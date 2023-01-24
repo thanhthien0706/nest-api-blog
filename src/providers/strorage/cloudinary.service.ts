@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { createReadStream } from 'fs';
+import { createReadStream } from 'streamifier';
 import cloudinary from 'src/config/Cloudinary.config';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class CloudinaryService {
     };
   }
 
-  uploadFileBuffer(fileUpload: Express.Multer.File, options: object) {
+  uploadFileBuffer(fileUpload: Express.Multer.File, options?: object): any {
     return new Promise((resolve, reject) => {
       const cld_upload_stream = cloudinary.uploader.upload_stream(
         {
@@ -23,7 +23,7 @@ export class CloudinaryService {
           ...options,
           public_id: fileUpload.originalname,
         },
-        (error: any, result: any) => {
+        function (error: any, result: any) {
           resolve(result);
           if (error) {
             reject(error);

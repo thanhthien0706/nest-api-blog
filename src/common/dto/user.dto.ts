@@ -3,10 +3,12 @@ import {
   IsDefined,
   IsEmail,
   IsNotEmpty,
+  IsNumber,
   IsString,
 } from 'class-validator';
+import { BaseDto } from './base.dto';
 
-export class UserDto {
+export class UserDto extends BaseDto {
   @IsString()
   fullName?: string;
 

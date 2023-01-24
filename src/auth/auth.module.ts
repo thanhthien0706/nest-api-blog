@@ -2,10 +2,11 @@ import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { CloudinaryModule } from 'src/providers/strorage/cloudinary.module';
-import { ReponseService } from 'src/base/reponse.service';
+import { UserModule } from 'src/user/user.module';
+import { RoleModule } from 'src/roles/role.module';
 
 @Module({
-  imports: [CloudinaryModule],
+  imports: [CloudinaryModule, UserModule, RoleModule],
   controllers: [AuthController],
   providers: [AuthService],
 })
