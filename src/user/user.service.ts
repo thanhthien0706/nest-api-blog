@@ -13,9 +13,7 @@ export class UserService {
   ) {}
 
   async checkExistByEmail(email: string): Promise<boolean> {
-    const checkUser = await this.userRepository.exist({
-      where: { email },
-    });
+    const checkUser = await this.userRepository.existByEmail(email);
 
     return checkUser;
   }
@@ -28,5 +26,15 @@ export class UserService {
     }
 
     return this.userConvert.toDto(user);
+  }
+
+  async getUserByEmail(email: string): Promise<UserEntity> {
+    const user = await this.userRepository.findByEmail(email);
+
+    if (!user) {
+      throw new ConflictException(`User ${email} does not exist`);
+    }
+
+    return user;
   }
 }
