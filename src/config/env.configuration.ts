@@ -8,4 +8,5 @@ export default () => ({
     PASSWORD: process.env.DATABASE_PASSWORD || '123456',
     NAME: process.env.DATABASE_NAME || 'db-nest-blog',
   },
+  SECRET_KEY: process.env.SECRET_KEY,
 });
